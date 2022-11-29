@@ -1,0 +1,32 @@
+import moment from 'moment'
+import PropTypes from 'prop-types'
+import './Tweet.css'
+import Avatar from './Avatar'
+
+function Tweet(props) {
+
+    const { user, createdOn, children } = props
+    
+    return (
+        <div className='tweet'>
+            <Avatar name={user} />
+            <div>
+                <div className='tweet-header'>
+                    <span className='tweet-user'>@{user}</span>
+                    <span className='tweet-created-on'>
+                        {moment(createdOn).fromNow()}
+                    </span>
+                </div>
+                <div className='tweet-content'>{[children]}</div>
+            </div>
+        </div>
+    );
+}
+
+Tweet.propTypes = {
+    user: PropTypes.string,
+    createdOn: PropTypes.string
+};
+
+export default Tweet
+
