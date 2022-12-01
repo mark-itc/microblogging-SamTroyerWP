@@ -1,12 +1,16 @@
 .tweet {
   padding: 10px;
   display: flex;
+  border: 2px solid black;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+
   
 }
 
 .tweet-header {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   margin-bottom: 5px;
 }
 
@@ -18,7 +22,7 @@
 
 .tweet-created-on {
   flex-grow: 1;
-  padding-left: 5px;
+  right: auto;
   color: rgb(110, 118, 125);
 }
 

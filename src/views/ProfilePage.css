@@ -1,0 +1,28 @@
+h2 {
+    margin: 20px auto;
+}
+
+.profile-page {
+    margin: 0 auto;
+    max-width: 400px;
+    margin-top: 30px;
+
+}
+
+.user-input {
+    width: 400px;
+    padding: .5em;
+    position: relative;
+    text-align: left;
+}
+
+.save-button {
+    margin-top: 5px;
+    margin-left: 330px;
+    color: white;
+    background-color: rgb(9, 120, 247);
+    border-radius: .5rem;
+    padding: .3em 1em;
+    position: absolute;
+    
+}

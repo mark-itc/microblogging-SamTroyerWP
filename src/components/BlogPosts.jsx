@@ -27,10 +27,11 @@ const handleChange = (e) => {
 
 const handleBtn = () => {}
 
+const savedUserName = localStorage.getItem('userName') ? JSON.parse(localStorage.getItem('userName')) : []
 
 const sendTweet = (e) => {
   const tweetObject = {
-    userName: 'robot panda',
+    userName: savedUserName,
     content: text,
     date: new Date().toISOString(),
   };
