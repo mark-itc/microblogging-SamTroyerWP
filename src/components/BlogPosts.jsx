@@ -1,14 +1,15 @@
-import PropTypes from 'prop-types'
-import React, {useState} from 'react'
+import React from 'react'
+import {useContext} from 'react'
 import './BlogPosts.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { postTweet } from '../operations/PostTweet';
+import { TweetsContext } from '../contexts/TweetsContext';
 
 
-function BlogPosts( {onSubmit} ) {
+function BlogPosts() {
      
-const [text, setText] = useState('');
-const [error, setError] = useState(null)
+const {text, setText, error, setError, savedUserName, newTweet} = useContext(TweetsContext)
+
 
 
   function Button (props) {
@@ -16,18 +17,17 @@ const [error, setError] = useState(null)
     return (<button disabled={disabled} onChange={onChange} className='btn btn-primary'>Tweet</button>)
   }
 
-const handleChange = (e) => {
-    if (e.target.value.length > 141) {
-    setError('Tweets cannot be longer than 140 chars');
-  } else {
-    setText(e.target.value);
-    setError(null);
-  }
-};
+  const handleChange = (e) => {
+      if (e.target.value.length > 141) {
+      setError('Tweets cannot be longer than 140 chars');
+    } else {
+      setText(e.target.value);
+      setError(null);
+    }
+  };
 
 const handleBtn = () => {}
 
-const savedUserName = localStorage.getItem('userName') ? JSON.parse(localStorage.getItem('userName')) : []
 
 const sendTweet = (e) => {
   const tweetObject = {
@@ -35,12 +35,21 @@ const sendTweet = (e) => {
     content: text,
     date: new Date().toISOString(),
   };
+  myTweet()
   postTweet(tweetObject)
   e.preventDefault()
-  onSubmit(text)
   setText('')
   console.log(text) 
 }
+
+const myTweet = () => {
+  localStorage.setItem('myTweet', JSON.stringify(newTweet));
+ };
+
+ const handleKeyDown = e => {
+  if (!e.shiftKey && e.key === 'Enter')
+  e.preventDefault()
+ }
 
   return (
     <form className='compose-form' onSubmit={sendTweet}>
@@ -52,16 +61,13 @@ const sendTweet = (e) => {
               placeholder='Insert Tweet Here'
               onChange = {handleChange}
               value = {text}
+              onKeyDown={handleKeyDown}
           />
           <span className='char-error'>{error && error}</span>
           <Button disabled={!text} onChange={() => handleBtn()} text="Tweet" />
       </div>
     </form>
   )
-}
-
-BlogPosts.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 }
 
 export default BlogPosts

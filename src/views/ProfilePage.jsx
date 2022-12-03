@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
+import { ProfileContext } from '../contexts/ProfileContext';
 import './ProfilePage.css'
 
 function ProfilePage() {
 
   
-  const [userName, setUserName] = useState("")
+  const {userName, setUserName, text, setText} = useContext(ProfileContext);
+  
     
   function saveUserName() {
       localStorage.setItem("userName", JSON.stringify(userName));
       setUserName('')
+      setText('')
   }
 
   function handleUserName(e) {
@@ -19,7 +22,14 @@ function ProfilePage() {
 
   function SaveButton (props) {
     const {disabled, onChange} = props
-    return (<button disabled={disabled} onClick={saveUserName} onChange={onChange} className='save-button'>Save</button>)
+    return (
+    <button 
+    disabled={disabled}
+    onClick={saveUserName} 
+    onChange={onChange} 
+    className='save-button'
+    >Save
+    </button>)
   }
 
   return (

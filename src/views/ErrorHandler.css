@@ -1,0 +1,9 @@
+.error-handler {
+    margin: 0 auto;
+    padding-top: 60px;
+    max-width: fit-content;
+    height: 100vh;
+    text-align: center;
+    display: block;
+    color: black;
+}

@@ -1,6 +1,7 @@
 .home {
     margin: 0 auto;
-    margin-top: 60px;
+    margin-top: 40px;
+    
   }
 
   .blog-posts {
@@ -18,4 +19,8 @@
     margin-bottom: 18px;
   }
   
+  .loader {
+    margin: 0 auto;
+    margin-top: 50px;
+  }
   

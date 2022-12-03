@@ -4,43 +4,41 @@ import Timeline from '../components/Timeline';
 import Tweet from '../components/Tweet';
 import './Home.css'
 import { sort } from 'fast-sort';
-import HashLoader from "react-spinners/HashLoader";
+import RingLoader  from "react-spinners/RingLoader";
 import { getFromAPI } from '../operations/GetTweet';
 
 
 
 function Home() {
 
-
-    const [tweets, setTweets] = useState('');
     
     const [tweetsArray, setTweetsArray] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-  
-    const handlePostTweet = () => {
-      setTweets([...tweets]);
-    };
-  
+    const storedTweet = JSON.parse(localStorage.getItem('myTweet')); // meant to be used in order to display self-tweet immediately from clicking "Tweet"
+
+
+
     useEffect(() => {
       const getTweets = async () => {
         setIsLoading(true);
         const serverTweets = await getFromAPI();
         setIsLoading(false);
-        return setTweetsArray(serverTweets);
+        return setTweetsArray([...serverTweets]);
       };
   
       getTweets();
-      const interval = setInterval(getTweets, 50000);
+      const interval = setInterval(getTweets, 60000);
       
       return () => clearInterval(interval);
     }, []);
   
     useEffect((e) => {
-      renderTweets();
+      renderTweets(e);
     }, [tweetsArray]);
   
     const renderTweets = () => {
       const sortedTweets = sort(tweetsArray).desc((u) => u.date);
+
       
       return sortedTweets.map((tweet) => {
         return <Tweet key={tweet.date} tweet={tweet} />;
@@ -51,14 +49,13 @@ function Home() {
         <div className="home">
           <BlogPosts 
             className='blog-posts'
-            onSubmit={handlePostTweet}
           />
           <div className='tweets-list'>
             {isLoading ? (
-              <HashLoader
+              <RingLoader
                 className="loader"
                 color="#0B6EFD"
-                size={80}
+                size={160}
                 loading={isLoading}
               />
             ) : (
