@@ -14,7 +14,7 @@ function Home() {
     
     const [tweetsArray, setTweetsArray] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const storedTweet = JSON.parse(localStorage.getItem('myTweet')); // meant to be used in order to display self-tweet immediately from clicking "Tweet"
+    // const storedTweet = JSON.parse(localStorage.getItem('myTweet')); // meant to be used in order to display self-tweet immediately from clicking "Tweet"
 
 
 

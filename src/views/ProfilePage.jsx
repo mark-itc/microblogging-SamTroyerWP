@@ -7,7 +7,7 @@ function ProfilePage() {
   
   const {userName, setUserName, text, setText} = useContext(ProfileContext);
   
-    
+
   function saveUserName() {
       localStorage.setItem("userName", JSON.stringify(userName));
       setUserName('')
@@ -19,6 +19,7 @@ function ProfilePage() {
    
   }
 
+  
 
   function SaveButton (props) {
     const {disabled, onChange} = props

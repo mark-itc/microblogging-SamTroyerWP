@@ -7,8 +7,6 @@ function ProfileContextProvider({ children }) {
 
     const [userName, setUserName] = useState("")
     const [text, setText] = useState('');
-
-
   return (
     <ProfileContext.Provider value={{userName, setUserName, text, setText}}>
       {children}
