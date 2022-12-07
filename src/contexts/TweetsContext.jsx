@@ -8,16 +8,11 @@ function TweetsContextProvider({ children }) {
 
     const [text, setText] = useState('');
     const [error, setError] = useState(null);
-    const savedUserName = localStorage.getItem('userName') ? JSON.parse(localStorage.getItem('userName')) : []
-    const newTweet = {
-      userName: savedUserName,
-      content: text,
-      date: new Date().toISOString(),
-    }
+    
 
 
   return (
-    <TweetsContext.Provider value={{ text, setText, error, setError, newTweet}}>
+    <TweetsContext.Provider value={{ text, setText, error, setError}}>
       {children}
     </TweetsContext.Provider>
   )

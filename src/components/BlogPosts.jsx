@@ -8,7 +8,7 @@ import { TweetsContext } from '../contexts/TweetsContext';
 
 function BlogPosts() {
      
-const {text, setText, error, setError, savedUserName, newTweet} = useContext(TweetsContext)
+const {text, setText, error, setError} = useContext(TweetsContext)
 
 
 
@@ -26,7 +26,17 @@ const {text, setText, error, setError, savedUserName, newTweet} = useContext(Twe
     }
   };
 
+
 const handleBtn = () => {}
+
+const savedUserName = localStorage.getItem('userName') 
+? JSON.parse(localStorage.getItem('userName')) : []
+
+    const newTweet = {
+      userName: savedUserName,
+      content: text,
+      date: new Date().toISOString(),
+    }
 
 
 const sendTweet = (e) => {
