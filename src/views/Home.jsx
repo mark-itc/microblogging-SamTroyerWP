@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import BlogPosts from '../components/BlogPosts';
-import Timeline from '../components/Timeline';
+// import Timeline from '../components/Timeline';
 import Tweet from '../components/Tweet';
 import './Home.css'
 import { sort } from 'fast-sort';
