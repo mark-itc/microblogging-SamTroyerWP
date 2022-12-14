@@ -27,7 +27,6 @@ const {text, setText, error, setError} = useContext(TweetsContext)
   };
 
 
-const handleBtn = () => {}
 
 const savedUserName = localStorage.getItem('userName') 
 ? JSON.parse(localStorage.getItem('userName')) : []
@@ -49,17 +48,15 @@ const sendTweet = (e) => {
   postTweet(tweetObject)
   e.preventDefault()
   setText('')
-  console.log(text) 
+  console.log(text)
+  alert('Tweet submitted successfully!')
 }
 
 const myTweet = () => {
   localStorage.setItem('myTweet', JSON.stringify(newTweet));
  };
 
- const handleKeyDown = e => {
-  if (!e.shiftKey && e.key === 'Enter')
-  e.preventDefault()
- }
+
 
   return (
     <form className='compose-form' onSubmit={sendTweet}>
@@ -71,10 +68,12 @@ const myTweet = () => {
               placeholder='Insert Tweet Here'
               onChange = {handleChange}
               value = {text}
-              onKeyDown={handleKeyDown}
           />
           <span className='char-error'>{error && error}</span>
-          <Button disabled={!text} onChange={() => handleBtn()} text="Tweet" />
+          <Button 
+            disabled={!text} 
+             
+            text="Tweet" />
       </div>
     </form>
   )

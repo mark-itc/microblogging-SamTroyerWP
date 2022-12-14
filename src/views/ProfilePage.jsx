@@ -12,6 +12,7 @@ function ProfilePage() {
       localStorage.setItem("userName", JSON.stringify(userName));
       setUserName('')
       setText('')
+      alert('Username was changed successfully!')
   }
 
   function handleUserName(e) {
