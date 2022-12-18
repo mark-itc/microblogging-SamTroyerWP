@@ -1,0 +1,26 @@
+.home {
+    margin: 0 auto;
+    margin-top: 40px;
+    
+  }
+
+  .blog-posts {
+    max-width: 400px;
+  }
+  
+  .tweets-list {
+    max-width: 600px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .app-logo {
+    margin-bottom: 18px;
+  }
+  
+  .loader {
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
