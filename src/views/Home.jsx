@@ -1,35 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import BlogPosts from '../components/BlogPosts';
+import { TweetsContext } from '../contexts/TweetsContext';
 // import Timeline from '../components/Timeline';
 import Tweet from '../components/Tweet';
 import './Home.css'
 import { sort } from 'fast-sort';
 import RingLoader  from "react-spinners/RingLoader";
-import { getFromAPI } from '../operations/GetTweet';
+// import { getFromAPI } from '../operations/GetTweet';
+import { db } from '../firebase';
+import { 
+  collection, 
+  doc, 
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore'
 
 
 
 function Home() {
 
-    
-    const [tweetsArray, setTweetsArray] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    // const storedTweet = JSON.parse(localStorage.getItem('myTweet')); // meant to be used in order to display self-tweet immediately from clicking "Tweet"
+    const {tweetsArray, setTweetsArray, error, setError, isLoading, setIsLoading, tweetsCollectionRef} = useContext(TweetsContext);
 
 
 
     useEffect(() => {
       const getTweets = async () => {
-        setIsLoading(true);
-        const serverTweets = await getFromAPI();
-        setIsLoading(false);
-        return setTweetsArray([...serverTweets]);
+        try {
+          onSnapshot(tweetsCollectionRef, (snapshot) => {
+            snapshot.docs.forEach((doc) =>
+            tweetsArray.push({
+              ...doc.data(),
+              id: doc.id,
+            })
+            );
+            setTweetsArray(tweetsArray)
+          })
+          setIsLoading(true);
+          const data = await getDocs(tweetsCollectionRef);
+          setTweetsArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+          console.log(data.docs)
+          setIsLoading(false);
+          return setTweetsArray([data]);
+        } catch (error) {
+          setError(error);
+        }
       };
-  
       getTweets();
-      const interval = setInterval(getTweets, 60000);
-      
-      return () => clearInterval(interval);
     }, []);
   
     useEffect((e) => {

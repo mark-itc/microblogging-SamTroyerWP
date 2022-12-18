@@ -1,15 +1,16 @@
 import React from 'react'
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import './BlogPosts.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { postTweet } from '../operations/PostTweet';
 import { TweetsContext } from '../contexts/TweetsContext';
+import { db } from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { useEffect } from 'react';
 
 
 function BlogPosts() {
      
-const {text, setText, error, setError} = useContext(TweetsContext)
-
+const {text, setText, error, setError, tweetsArray, setTweetsArray, tweetsCollectionRef} = useContext(TweetsContext)
 
 
   function Button (props) {
@@ -27,31 +28,38 @@ const {text, setText, error, setError} = useContext(TweetsContext)
   };
 
 
+const handleBtn = () => {}
 
 const savedUserName = localStorage.getItem('userName') 
 ? JSON.parse(localStorage.getItem('userName')) : []
+
+const [num, setNum] = useState();
+
+function randomID(min, max) { 
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
     const newTweet = {
       userName: savedUserName,
       content: text,
       date: new Date().toISOString(),
+      id: num
     }
 
+  const postTweet = async () => {
+    await addDoc(tweetsCollectionRef, newTweet);
+    setTweetsArray([newTweet, ...tweetsArray]);
+  }
 
 const sendTweet = (e) => {
-  const tweetObject = {
-    userName: savedUserName,
-    content: text,
-    date: new Date().toISOString(),
-  };
   myTweet()
-  postTweet(tweetObject)
+  setNum(randomID(1, 10000))
+  postTweet(newTweet)
   e.preventDefault()
   setText('')
-  console.log(text)
-  alert('Tweet submitted successfully!')
+  console.log(text) 
 }
-
 const myTweet = () => {
   localStorage.setItem('myTweet', JSON.stringify(newTweet));
  };
@@ -70,10 +78,7 @@ const myTweet = () => {
               value = {text}
           />
           <span className='char-error'>{error && error}</span>
-          <Button 
-            disabled={!text} 
-             
-            text="Tweet" />
+          <Button disabled={!text} onChange={() => handleBtn()} text="Tweet" />
       </div>
     </form>
   )
