@@ -47,13 +47,9 @@ function randomID(min, max) {
       id: num
     }
 
-  const postTweet = async () => {
-    try {
-      await addDoc(tweetsCollectionRef, newTweet)
-    } catch (err) {
-      setError(err)
-    }
-    setTweetsArray([newTweet, ...tweetsArray])
+  const postTweet = async (newTweet) => {
+    addDoc(tweetsCollectionRef, newTweet);
+    await setTweetsArray([...tweetsArray]);
   }
 
 const sendTweet = (e) => {
@@ -62,7 +58,7 @@ const sendTweet = (e) => {
   postTweet(newTweet)
   e.preventDefault()
   setText('')
-  console.log(text) 
+  console.log(text)
 }
 const myTweet = () => {
   localStorage.setItem('myTweet', JSON.stringify(newTweet));
