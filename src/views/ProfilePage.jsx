@@ -11,7 +11,7 @@ function ProfilePage() {
   function saveUserName() {
       localStorage.setItem("userName", JSON.stringify(userName));
       setUserName('')
-      setText('')
+      setText(text)
   }
 
   function handleUserName(e) {

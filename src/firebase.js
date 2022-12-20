@@ -104,6 +104,6 @@ export {
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  sendPasswordResetEmail,
+  sendPasswordReset,
   logout
 };

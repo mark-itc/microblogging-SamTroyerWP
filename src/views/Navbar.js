@@ -32,19 +32,17 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
       
-    <div className="navbar-nav">
-      <a className="nav-item nav-link" href="home">Home</a>
-      <a className="nav-item nav-link" href="profile">Profile</a>
-    </div>
-    <div className='dashboard_container'>
-      Logged in as
-      <div>{name}</div>
-      <div>{user?.email}</div>
-      <button className='dashboard_btn' onClick={logout}>
-        Logout
-      </button>
-    </div>
-  
+        {/* <a className="nav-item nav-link" href="home">Home</a> */}
+        {/* <a className="nav-item nav-link" href="profile">Profile</a> */}
+      
+        {/* <div className='navbar_container'> */}
+          <p className='nav-item'> Logged in as</p>
+          <div>{name}</div>
+          <div>{user?.email}</div>
+        {/* </div> */}
+        <button className='navbar_btn' onClick={logout}>
+          Logout
+        </button>
     </nav>
   )
 }

@@ -2,7 +2,7 @@ import './App.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Navbar from './views/Navbar';
 import Home from './views/Home';
-import ProfilePage from './views/ProfilePage';
+// import ProfilePage from './views/ProfilePage';
 import ErrorHandler from './views/ErrorHandler';
 import Register from './firebase/Register';
 import Login from './firebase/Login';
@@ -43,16 +43,15 @@ function App() {
       errorElement: <ErrorHandler />
 
     },
-    {
-      path: '/profile',
-      element: <ProfilePage />,
-      errorElement: <ErrorHandler />
-    }
+    // {
+    //   path: '/profile',
+    //   element: <ProfilePage />,
+    //   errorElement: <ErrorHandler />
+    // }
   ])
 
   return (
     <div className="app">
-      <Navbar className='navbar' />
       <RouterProvider router={router} />
     </div>
   );
