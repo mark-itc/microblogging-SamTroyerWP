@@ -8,9 +8,7 @@ import { sort } from 'fast-sort';
 import RingLoader  from "react-spinners/RingLoader";
 // import { getFromAPI } from '../operations/GetTweet';
 import { db } from '../firebase';
-import { 
-  collection, 
-  doc, 
+import {
   getDocs,
   onSnapshot,
 } from 'firebase/firestore'
@@ -40,7 +38,7 @@ function Home() {
           setTweetsArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
           console.log(data.docs)
           setIsLoading(false);
-          return setTweetsArray([data]);
+          return setTweetsArray(tweetsArray);
         } catch (error) {
           setError(error);
         }

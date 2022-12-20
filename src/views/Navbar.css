@@ -1,4 +1,26 @@
-.nav-item:first-child {
-    margin-left: 50px;
-    display: flex;
+.nav-item {
+    margin: 0 20px;
+    color: white;
 }
+
+.navbar {
+    text-align: center;
+    display: inline;
+    width: 100vw;
+}
+
+  /* .navbar_container {
+    display: flex;
+    color: white;
+    padding: 10px 30px;
+  } */
+  
+  .navbar_btn {
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    background-color: black;
+  }
+ 
