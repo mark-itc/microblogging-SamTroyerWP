@@ -20,7 +20,7 @@ function Register() {
     };
     useEffect(() => {
         if (loading) return;
-        if (user) navigate.replace('/home');
+        if (user) navigate('/home');
     }, [user, loading]);
 
     return (

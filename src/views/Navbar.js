@@ -37,8 +37,8 @@ function Navbar() {
       
         {/* <div className='navbar_container'> */}
           <p className='nav-item'> Logged in as</p>
-          <div>{name}</div>
-          <div>{user?.email}</div>
+          <div className='user-name'>{name}</div>
+          <div className='user-name'>{user?.email}</div>
         {/* </div> */}
         <button className='navbar_btn' onClick={logout}>
           Logout

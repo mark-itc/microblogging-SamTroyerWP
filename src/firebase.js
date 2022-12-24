@@ -16,6 +16,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
  } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD50d7WwPbwFEvI2m8xkteu-ylBXNgbRDA",
@@ -74,8 +75,6 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     const user = response.user;
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
-      name,
-      authProvider: 'local',
       email,
     });
   } catch (err) {
